@@ -4,6 +4,7 @@ using SunGroupProject.Structs;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
 
 #region PersonsList
 //List<Person> personsList = new List<Person>();
@@ -178,13 +179,13 @@ using System.Text.RegularExpressions;
 //foreach(char c in chars)
 //{
 //    int ii;
-    
+
 //    if (int.TryParse(c.ToString(), out ii))
 //    {
 //        ConNum = true;
 //        break;
 //    }
-    
+
 //}
 //if (ConNum == false)
 //    Console.WriteLine("Tesxt Not contains Numbers");
@@ -193,6 +194,90 @@ using System.Text.RegularExpressions;
 #endregion
 
 
+#region Luc11/08/2024
+
+#region DelegateText
+//string str = "Test Delegates";
+//CallText(str, UpperCase);
+//CallText(str, LowerCase);
+//CallText(str, SubText);
+//CallText(str, Replace);
+
+//CallText(str, delegate (string MyText) { Console.WriteLine(MyText.ToUpper()); });
+
+////Lambda 
+
+//CallText(str, (text) => Console.WriteLine(text.ToLower()));
+
+//CallUpperText(() => Console.WriteLine("No Parameters Delegete"));
+
+//void CallText(string text, ShowText dlg) => dlg(text);
+
+//void CallUpperText(ShowUpperText dlg) => dlg();
+
+//void UpperCase(string text)
+//{
+//    text = text.ToUpper();
+//    Console.WriteLine(text);
+//}
+//void LowerCase(string text)
+//{
+//    text = text.ToLower();
+//    Console.WriteLine(text);
+//}
+//void SubText(string text)
+//{
+//    text = text.Substring(2, 5);
+//    Console.WriteLine(text);
+//}
+//void Replace(string text)
+//{
+//    text = text.Replace("Test", "Exam");
+//    Console.WriteLine(text);
+//}
+
+#endregion
+
+
+#region DelegateOrder
+
+List<Order> _orderList = new List<Order>();
+for(int i = 1; i <= 50; i++)
+{
+    Random rnd = new Random();
+    Order order = new Order();
+    order.ProductName = $"Product {i}";
+    order.Price = rnd.Next(50, 1000);
+    order.Quantity = rnd.Next(1, 30);
+    _orderList.Add(order);
+}
+
+foreach(Order order in _orderList)
+{
+    order.OrderEvent += ShowOrderFromEvent;
+    order.OrderEvent += ShowOrderTotalFromEvent;
+    order.OrderEvent -= ShowOrderTotalFromEvent;
+    order.OrderMethod(order);
+    Console.WriteLine($"Order From Loop / Product Name : {order.ProductName}, Price : {order.Price}, Quantity : {order.Quantity}, Total : {order.ShowTotalMethd(order.Price, order.Quantity, OrderTotal)}");
+}
+
+void ShowOrderFromEvent(Order order)
+{
+    Console.WriteLine($"Order From Event / Product : {order.ProductName}, Price : {order.Price}, Quantity : {order.Quantity}");
+}
+void ShowOrderTotalFromEvent(Order order)
+{
+    Console.WriteLine($"Order Total From Event / {order.ShowTotalMethd(order.Price, order.Quantity, OrderTotal)}");
+}
+
+double OrderTotal(double prodPrice, double prodQnt)
+{
+    return prodPrice * prodQnt;
+}
+#endregion
+#endregion
+
 Console.ReadLine();
 
-
+delegate void ShowText(string text);
+delegate void ShowUpperText();
