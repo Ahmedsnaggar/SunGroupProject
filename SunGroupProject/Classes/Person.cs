@@ -10,6 +10,7 @@ namespace SunGroupProject.Classes
     {
         
         #region fields
+        private int _Id;
         private string _Name;
         private DateTime _DOB;
         private string _City;
@@ -19,6 +20,7 @@ namespace SunGroupProject.Classes
         private Gender _Gender;
         #endregion
         #region Properties
+        public int Id { get { return _Id; } set { _Id = value; } }
         public string Name { get { return _Name; } set { _Name = value; } }
         public DateTime DOB { get { return _DOB; } set { _DOB = value; } }
         public string City { get { return _City; } set { _City = value; } }

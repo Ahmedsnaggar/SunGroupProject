@@ -1,11 +1,14 @@
 ﻿using SunGroupProject;
 using SunGroupProject.Classes;
+using SunGroupProject.Classes.Concrets;
+using SunGroupProject.Classes.Interfaces;
 using SunGroupProject.Structs;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using static System.Net.Mime.MediaTypeNames;
 
+#region Before11/08/2024
 #region PersonsList
 //List<Person> personsList = new List<Person>();
 
@@ -193,8 +196,8 @@ using static System.Net.Mime.MediaTypeNames;
 //    Console.WriteLine("Tesxt contains Numbers");
 #endregion
 
-
-#region Luc11/08/2024
+#endregion
+#region Lec11/08/2024
 
 #region DelegateText
 //string str = "Test Delegates";
@@ -241,42 +244,250 @@ using static System.Net.Mime.MediaTypeNames;
 
 #region DelegateOrder
 
-List<Order> _orderList = new List<Order>();
-for(int i = 1; i <= 50; i++)
-{
-    Random rnd = new Random();
-    Order order = new Order();
-    order.ProductName = $"Product {i}";
-    order.Price = rnd.Next(50, 1000);
-    order.Quantity = rnd.Next(1, 30);
-    _orderList.Add(order);
-}
+//List<Order> _orderList = new List<Order>();
+//for(int i = 1; i <= 50; i++)
+//{
+//    Random rnd = new Random();
+//    Order order = new Order();
+//    order.ProductName = $"Product {i}";
+//    order.Price = rnd.Next(50, 1000);
+//    order.Quantity = rnd.Next(1, 30);
+//    _orderList.Add(order);
+//}
 
-foreach(Order order in _orderList)
-{
-    order.OrderEvent += ShowOrderFromEvent;
-    order.OrderEvent += ShowOrderTotalFromEvent;
-    order.OrderEvent -= ShowOrderTotalFromEvent;
-    order.OrderMethod(order);
-    Console.WriteLine($"Order From Loop / Product Name : {order.ProductName}, Price : {order.Price}, Quantity : {order.Quantity}, Total : {order.ShowTotalMethd(order.Price, order.Quantity, OrderTotal)}");
-}
+//foreach(Order order in _orderList)
+//{
+//    order.OrderEvent += ShowOrderFromEvent;
+//    order.OrderEvent += ShowOrderTotalFromEvent;
+//    order.OrderEvent -= ShowOrderTotalFromEvent;
+//    order.OrderMethod(order);
+//    Console.WriteLine($"Order From Loop / Product Name : {order.ProductName}, Price : {order.Price}, Quantity : {order.Quantity}, Total : {order.ShowTotalMethd(order.Price, order.Quantity, OrderTotal)}");
+//}
 
-void ShowOrderFromEvent(Order order)
-{
-    Console.WriteLine($"Order From Event / Product : {order.ProductName}, Price : {order.Price}, Quantity : {order.Quantity}");
-}
-void ShowOrderTotalFromEvent(Order order)
-{
-    Console.WriteLine($"Order Total From Event / {order.ShowTotalMethd(order.Price, order.Quantity, OrderTotal)}");
-}
+//void ShowOrderFromEvent(Order order)
+//{
+//    Console.WriteLine($"Order From Event / Product : {order.ProductName}, Price : {order.Price}, Quantity : {order.Quantity}");
+//}
+//void ShowOrderTotalFromEvent(Order order)
+//{
+//    Console.WriteLine($"Order Total From Event / {order.ShowTotalMethd(order.Price, order.Quantity, OrderTotal)}");
+//}
 
-double OrderTotal(double prodPrice, double prodQnt)
-{
-    return prodPrice * prodQnt;
-}
+//double OrderTotal(double prodPrice, double prodQnt)
+//{
+//    return prodPrice * prodQnt;
+//}
 #endregion
 #endregion
 
+#region Lec17/08/2024
+#region CustomeExceptios
+//throw new OutOfStockException();
+//throw new OutOfStockException("Item is out of stock");
+//throw new DatabaseNotFoundException();
+//throw new DatabaseNotFoundException("Database not found");
+#endregion
+
+#region Interfaces
+//PersonCrudOperation personCrud = new PersonCrudOperation();
+////foreach(Person person in personCrud.personsList)
+////{
+////    Console.WriteLine(person.Name);
+////}
+//List<Person> persons = personCrud.GetAllPersons();
+////foreach (Person person in persons)
+////{
+////    Console.WriteLine(person.Name);
+////}
+////Person CurrentPerson = personCrud.GetPersonById(100);
+////Console.WriteLine($"Person Id : {CurrentPerson.Id}, Person Name : {CurrentPerson.Name}");
+////Person CurrentPerson = personCrud.GetPersonByName("1");
+////Console.WriteLine($"Person Id : {CurrentPerson.Id}, Person Name : {CurrentPerson.Name}");
+//Person newPerson = new Person();
+//personCrud.AddPerson(newPerson);
+//foreach (Person person in persons)
+//{
+//    Console.WriteLine($"Person Id : {person.Id}, Name : {person.Name}");
+//}
+//newPerson.Name = "Test";
+//personCrud.UpdatePerson(newPerson, 0);
+//foreach (Person person in persons)
+//{
+//    Console.WriteLine($"Person Id : {person.Id}, Name : {person.Name}");
+//}
+//personCrud.DeletePerson(0);
+//foreach (Person person in persons)
+//{
+//    Console.WriteLine($"Person Id : {person.Id}, Name : {person.Name}");
+//}
+#endregion
+
+#endregion
+
+#region Lec18/08/2024
+#region Inteface
+//PersonCrudOperation personCrud = new PersonCrudOperation();
+//Console.WriteLine(personCrud.ShowWelcom());
+
+//IPersonCrudOperation personCrud1 = new PersonCrudOperation();
+//Console.WriteLine(personCrud1.ShowWelcom());
+#endregion
+
+#region IEnumerable
+//OrderHeader orderHeader = new OrderHeader();
+//orderHeader.Id = 1;
+//orderHeader.OrderDate = DateTime.Now;
+//orderHeader.Customer = "Customer 1";
+
+//for (int i =   1; i <= 10; i++)
+//{
+//    OrderDetails orderDetails = new OrderDetails();
+//    orderDetails.ProductName = $"Product {i}";
+//    orderDetails.Price = i;
+//    orderDetails.Quantity = i;
+//    orderHeader.details.Add(orderDetails);
+//}
+//foreach (OrderDetails od in orderHeader)
+//{
+//    Console.WriteLine(od.ProductName);
+//}
+
+//PersonCrudOperation personCrud = new PersonCrudOperation();
+
+//foreach(Person person in personCrud)
+//{
+//    person.Id = 1;
+//}
+
+//foreach(int i in myInts())
+//{
+//    Console.WriteLine(i);
+//}
+
+//IEnumerable<int> myInts()
+//{
+//     yield return 1;
+//    yield return 2;
+//    yield return 3;
+//    yield return 4;
+//        yield return 5;
+//}
+
+
+
+#endregion
+
+#region Generics
+//GenericClass<int> genericInts = new GenericClass<int>();
+//genericInts.addItem(1);
+//genericInts.addItem(2);
+//    genericInts.addItem(3);
+//genericInts.addItem(4);
+//genericInts.removeItem(4);
+
+//List<int> ints = genericInts.GetAllItems();
+//foreach (int i in ints)
+//{
+//    Console.WriteLine($"{i}");
+//}
+
+//GenericClass<Person> genericPerson = new GenericClass<Person>();
+
+
+//DateTime date = new DateTime(2000, 10, 30);
+
+//for (int i = 1; i <= 10; i++)
+//{
+//    date = date.AddDays(1);
+//    Person person = new Person();
+//    person.Name = $"Person {i}";
+//    person.DOB = date.AddDays(1);
+//    person.Address = $"Address {i}";
+//    person.City = $"City {i}";
+//    person.PhoneNumber = $"Phone {i}";
+//    person.IdNumber = $"Id {i}";
+
+//    if (i % 2 == 0)
+//    {
+//        person.gender = Gender.Female;
+//    }
+//    else
+//    {
+//        person.gender = Gender.Male;
+//    }
+
+//    genericPerson.addItem(person);
+
+//}
+
+//List<Person> PersonList = genericPerson.GetAllItems(); 
+//foreach(Person person in PersonList)
+//{
+//    Console.WriteLine($"Person Name : {person.Name}");
+//}
+
+GenericCrudOperations<string> genericCrud = new GenericCrudOperations<string>();
+for (int i = 1; i <= 10; i++)
+{
+    genericCrud.Add($"Item {i.ToString()}");
+}
+List<string> list = genericCrud.GetAll();
+
+foreach (string item in list)
+{
+    Console.WriteLine(item);
+}
+
+GenericCrudOperations<int> genericintCrud = new GenericCrudOperations<int>();
+for (int i = 1; i <= 10; i++)
+{
+    genericintCrud.Add(i);
+}
+List<int> intlist = genericintCrud.GetAll();
+
+foreach (string item in list)
+{
+    Console.WriteLine(item);
+}
+
+GenericCrudOperations<Person> genericPerson = new GenericCrudOperations<Person>();
+
+DateTime date = new DateTime(2000, 10, 30);
+
+for (int i = 1; i <= 10; i++)
+{
+    date = date.AddDays(1);
+    Person person = new Person();
+    person.Name = $"Person {i}";
+    person.DOB = date.AddDays(1);
+    person.Address = $"Address {i}";
+    person.City = $"City {i}";
+    person.PhoneNumber = $"Phone {i}";
+    person.IdNumber = $"Id {i}";
+
+    if (i % 2 == 0)
+    {
+        person.gender = Gender.Female;
+    }
+    else
+    {
+        person.gender = Gender.Male;
+    }
+
+    genericPerson.Add(person);
+
+}
+
+List<Person> persons = genericPerson.GetAll();
+foreach (Person person in persons)
+{
+    Console.WriteLine(person.Name);
+}
+
+
+
+#endregion
+#endregion
 Console.ReadLine();
 
 delegate void ShowText(string text);
